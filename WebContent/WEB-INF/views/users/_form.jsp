@@ -21,6 +21,14 @@
 <input type="password" name="password" />
 <br /><br />
 
+<label for="contract_date">契約日</label><br />
+<input type="text" name="contract_date" />
+<br /><br />
+
+<label for="address">住所</label><br />
+<input type="text" name="address" />
+<br /><br />
+
 <label for="admin_flag">権限</label><br />
 <select name="admin_flag">
     <option value="0"<c:if test="${user.admin_flag == 0}"> selected</c:if>>オーナー様</option>

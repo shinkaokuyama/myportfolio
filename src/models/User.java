@@ -111,7 +111,7 @@ public class User {
         return contract_date;
     }
 
-    public void setContract_date(Date Contract_date){
+    public void setContract_date(Date Contract_date, Date contract_date){
         this.contract_date = contract_date;
     }
 
@@ -119,7 +119,7 @@ public class User {
         return address;
     }
 
-    public void setAdress(String address){
+    public void setAddress(String address){
         this.address = address;
     }
 
