@@ -1,7 +1,6 @@
 package controllers.Users;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -51,8 +50,8 @@ public class UsersCreateServlet extends HttpServlet {
                     );
             u.setAdmin_flag(Integer.parseInt(request.getParameter("admin_flag")));
 
-            Date currentTime = new Date(System.currentTimeMillis());
-            u.setContract_date(currentTime, currentTime);
+            u.setContract_date(request.getParameter("contract_date"));
+
             u.setDelete_flag(0);
 
             u.setAddress(request.getParameter("address"));

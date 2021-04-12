@@ -22,7 +22,7 @@
                         <td><c:out value="${user.contract_date}" /></td>
                         <td>
                             <c:choose>
-                                <c:when test="${employee.delete_flag == 1}">
+                                <c:when test="${user.delete_flag == 1}">
                                     (消去済み)
                                 </c:when>
                                 <c:otherwise>

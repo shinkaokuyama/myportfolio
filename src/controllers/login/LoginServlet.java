@@ -1,6 +1,7 @@
 package controllers.login;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -92,8 +93,37 @@ public class LoginServlet extends HttpServlet {
             // 認証できたらログイン状態にしてトップページへリダイレクト
             request.getSession().setAttribute("login_user", u);
 
+            request.getSession().setAttribute("login_user", u);
             request.getSession().setAttribute("flush", "ログインしました。");
-            response.sendRedirect(request.getContextPath() + "/");
+        }
+        if(u.getAdmin_flag() == 1){
+            EntityManager em = DBUtil.createEntityManager();
+
+            int page;
+            try{
+                page = Integer.parseInt(request.getParameter("page"));
+            }catch(Exception e) {
+                page = 1;
+            }
+            List<User> users = em.createNamedQuery("getAllUsers",User.class)
+                                 .setFirstResult(15 * (page - 1))
+                                 .setMaxResults(15)
+                                 .getResultList();
+
+            long users_count = (long)em.createNamedQuery("getUsersCount", Long.class)
+                                       .getSingleResult();
+
+            em.close();
+
+            request.setAttribute("users", users);
+            request.setAttribute("users_count", users_count);
+            request.setAttribute("page", page);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
+            rd.forward(request, response);
+        }else{
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/owners/index.jsp");
+            rd.forward(request, response);
         }
     }
 

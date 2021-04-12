@@ -1,7 +1,5 @@
 package models;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +19,7 @@ import javax.persistence.Table;
             name = "getUsersCount",
             query = "SELECT COUNT(e) FROM User AS e"
     ),
+
     @NamedQuery(
             name = "checkRegisteredCode",
             query = "SELECT COUNT(e) FROM User AS e WHERE e.code = :code"
@@ -29,7 +28,8 @@ import javax.persistence.Table;
             name = "checkLoginCodeAndPassword",
             query = "SELECT e FROM User AS e WHERE e.delete_flag = 0 AND e.code = :code AND e.password = :pass"
     )
-})
+
+    })
 
 @Entity
 public class User {
@@ -54,7 +54,7 @@ public class User {
     private Integer delete_flag;
 
     @Column(name = "contract_date", nullable = false)
-    private Date contract_date;
+    private String contract_date;
 
     @Column(name = "address", nullable = false)
     private String address;
@@ -107,11 +107,11 @@ public class User {
         this.delete_flag = delete_flag;
     }
 
-    public Date getContract_date(){
+    public String getContract_date(){
         return contract_date;
     }
 
-    public void setContract_date(Date Contract_date, Date contract_date){
+    public void setContract_date(String contract_date){
         this.contract_date = contract_date;
     }
 
@@ -123,4 +123,7 @@ public class User {
         this.address = address;
     }
 
-}
+
+    }
+
+
