@@ -13,7 +13,7 @@
                 <c:forEach var="user" items="${users}" varStatus="status">
                     <tr class="row${status.count % 2}">
 
-                        <td><a href="<c:url value='/users/show?id=${user.name}' />"><c:out value="${user.name}" /></a></td>
+                        <td><a href="<c:url value='/processes/index?id=${user.name}' />"><c:out value="${user.name}" /></a></td>
                         <td><c:out value="${user.contract_date}" /></td>
                         <td>
                             <c:choose>
