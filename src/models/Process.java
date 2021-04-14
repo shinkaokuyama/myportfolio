@@ -22,7 +22,7 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getProcessesCount",
             query = "SELECT COUNT(r) FROM Process AS r"
-            )
+            ),
 
 })
 
@@ -40,7 +40,7 @@ public class Process {
     @Column(name = "completed_date", nullable = false)
     private Date completed_date;
 
-    @Column(name = "process_name", length = 255, nullable = false)
+    @Column(name = "process_name", length = 50, nullable = false)
     private String process_name;
 
     @Column(name = "message", length = 300, nullable = false)
@@ -67,7 +67,7 @@ public class Process {
     public Date getCompleted_date(){
         return completed_date;
     }
-    public void setCompletion_date(Date completed_date){
+    public void setCompleted_date(Date completed_date){
         this.completed_date = completed_date;
     }
 

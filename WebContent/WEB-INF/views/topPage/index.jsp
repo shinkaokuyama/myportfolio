@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
-        <h2>オーナー様一覧</h2>
+        <h2>ユーザー　一覧</h2>
         <table id="user_list">
             <tbody>
                 <tr>
@@ -13,7 +13,7 @@
                 <c:forEach var="user" items="${users}" varStatus="status">
                     <tr class="row${status.count % 2}">
 
-                        <td><a href="<c:url value='/processes/index?id=${user.name}' />"><c:out value="${user.name}" /></a></td>
+                        <td><a href="<c:url value='/processes/index?id=${user.id}' />"><c:out value="${user.name}" /></a></td>
                         <td><c:out value="${user.contract_date}" /></td>
                         <td>
                             <c:choose>

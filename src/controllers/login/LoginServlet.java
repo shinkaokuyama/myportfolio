@@ -119,7 +119,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("users_count", users_count);
             request.setAttribute("page", page);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/index.jsp");
             rd.forward(request, response);
         }else{
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/owners/index.jsp");
