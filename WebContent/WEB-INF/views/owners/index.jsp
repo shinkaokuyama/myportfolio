@@ -13,13 +13,13 @@
             <tbody>
                 <tr>
                     <th class="process_name">工程名</th>
-                    <th class="process_date">日付</th>
+                    <th class="process_date">完了日</th>
                 </tr>
                 <c:forEach var="process" items="${processes}" varStatus="status">
                     <tr class="row${status.count % 2}">
                         <td class="process_name"><c:out value="${process.process_name}" /></td>
-                        <td class="process_date"><fmt:formatDate value='${process.process_date}' pattern='yyyy-MM-dd' /></td>
-                        <td class="process_action"><a href="<c:url value='/reports/show?id=${report.id}' />">詳細を見る</a></td>
+                        <td class="completed_date"><fmt:formatDate value='${process.completed_date}' pattern='yyyy-MM-dd' /></td>
+                        <td class="process_action"><a href="<c:url value='/processes/show?id=${process.id}' />">詳細を見る</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -38,7 +38,9 @@
                 </c:choose>
             </c:forEach>
         </div>
+         <c:if test="${sessionScope.login_user.admin_flag == 1}">
         <p><a href="<c:url value='/processes/new' />">新規工程の登録</a></p>
+        </c:if>
 
     </c:param>
 </c:import>

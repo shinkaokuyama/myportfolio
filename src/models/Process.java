@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -43,6 +44,7 @@ public class Process {
     @Column(name = "process_name", length = 50, nullable = false)
     private String process_name;
 
+    @Lob
     @Column(name = "message", length = 300, nullable = false)
     private String message;
 

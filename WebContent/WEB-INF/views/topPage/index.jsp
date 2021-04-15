@@ -38,13 +38,14 @@
                         <c:out value="${1}" />&nbsp;
                     </c:when>
                     <c:otherwise>
-                        <a href="<c:url value='/users/index?page=${i}' />"><c:out value="${i}" /></a>6nbsp;
+                        <a href="<c:url value='/users/index?page=${i}' />"><c:out value="${i}" /></a>&nbsp;
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
         </div>
+         <c:if test="${sessionScope.login_user.admin_flag == 1}">
         <p><a href="<c:url value='/users/new' />">新規オーナー様の登録</a></p>
-
+        </c:if>
 
     </c:param>
 </c:import>

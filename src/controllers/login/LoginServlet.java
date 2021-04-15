@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Process;
 import models.User;
 import utils.DBUtil;
 import utils.EncryptUtil;
@@ -122,6 +123,28 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/index.jsp");
             rd.forward(request, response);
         }else{
+            EntityManager em = DBUtil.createEntityManager();
+
+            int page;
+            try{
+                page = Integer.parseInt(request.getParameter("page"));
+            }catch(Exception e){
+                page = 1;
+            }
+            List<Process> processes = em.createNamedQuery("getAllProcesses", Process.class)
+                                        .setFirstResult(15 * (page - 1))
+                                        .setMaxResults(15)
+                                        .getResultList();
+
+            long processes_count = (long)em.createNamedQuery("getProcessesCount", Long.class)
+                                           .getSingleResult();
+
+            em.close();
+
+            request.setAttribute("processes", processes);
+            request.setAttribute("processes_count", processes_count);
+            request.setAttribute("page", page);
+
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/owners/index.jsp");
             rd.forward(request, response);
         }

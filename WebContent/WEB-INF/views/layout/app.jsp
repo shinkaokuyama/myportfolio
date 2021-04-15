@@ -12,7 +12,14 @@
         <div id="wrapper">
             <div id="header">
                 <div id="header_menu">
+                <c:choose>
+                    <c:when test="${sessionScope.login_user.admin_flag == 1}">
                     <h1><a href="<c:url value='/' />">家つくりナビ</a></h1>&nbsp;&nbsp;&nbsp;
+                    </c:when>
+                    <c:otherwise>
+                    <h1><a href="<c:url value='/processes/index' />">家つくりナビ</a></h1>&nbsp;&nbsp;&nbsp;
+                    </c:otherwise>
+                </c:choose>
                 </div>
                 <c:if test="${sessionScope.login_user != null}">
                     <div id="user_name">
