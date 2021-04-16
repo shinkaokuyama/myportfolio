@@ -42,6 +42,8 @@ public class ProcessesCreateServlet extends HttpServlet {
             Process p = new Process();
 
             p.setUser((User)request.getSession().getAttribute("login_user"));
+            p.setUser((User)request.getSession().getAttribute("user_id"));
+            p.setUser((User)request.getSession().getAttribute("user_name"));
 
             Date completed_date = new Date(System.currentTimeMillis());
             String rd_str = request.getParameter("completed_date");

@@ -18,6 +18,10 @@
 <c:out value="${sessionScope.login_user.name}" />
 <br /><br />
 
+<label for="name">オーナー名</label><br />
+<c:out value="${sessionScope.user_id.name}" />
+<br /><br />
+
 <label for="process_name">工程名</label><br />
 <input type="text" name="process_name" value="${process.process_name}" />
 <br /><br />
