@@ -3,7 +3,7 @@
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <c:choose>
-            <c:when test="${report != null}">
+            <c:when test="${process != null}">
                 <h2>工程　編集ページ</h2>
                 <form method="POST" action="<c:url value='/processes/update' />">
                     <c:import url="_form.jsp" />

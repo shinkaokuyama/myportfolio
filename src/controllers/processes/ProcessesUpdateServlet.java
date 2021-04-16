@@ -28,7 +28,6 @@ public class ProcessesUpdateServlet extends HttpServlet {
      */
     public ProcessesUpdateServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -42,7 +41,7 @@ public class ProcessesUpdateServlet extends HttpServlet {
             Process p = em.find(Process.class, (Integer)(request.getSession().getAttribute("process_id")));
 
             p.setCompleted_date(Date.valueOf(request.getParameter("completed_date")));
-            p.setProcess_name("process_name");
+            p.setProcess_name(request.getParameter("process_name"));
             p.setMessage(request.getParameter("message"));
 
             List<String> errors = ProcessValidator.validate(p);
@@ -63,7 +62,7 @@ public class ProcessesUpdateServlet extends HttpServlet {
 
                 request.getSession().removeAttribute("process_id");
 
-                response.sendRedirect(request.getContextPath() + "processes/index");
+                response.sendRedirect(request.getContextPath() + "/processes/index");
             }
         }
     }

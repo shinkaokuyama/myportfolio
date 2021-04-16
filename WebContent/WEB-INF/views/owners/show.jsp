@@ -26,7 +26,7 @@
                     </tbody>
                 </table>
 
-                <c:if test="${sessionScope.login_user.id == process.user.id}">
+                <c:if test="${sessionScope.login_user.admin_flag == 1}">
                     <p><a href="<c:url value="/processes/edit?id=${process.id}" />">この工程を編集する</a></p>
                 </c:if>
             </c:when>

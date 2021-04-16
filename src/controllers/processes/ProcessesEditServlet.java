@@ -39,7 +39,7 @@ public class ProcessesEditServlet extends HttpServlet {
         em.close();
 
         User login_user = (User)request.getSession().getAttribute("login_user");
-        if(p != null && login_user.getId() == p.getUser().getId()){
+        if(p != null && login_user.getId() == p.getUser().getId()) {
             request.setAttribute("process", p);
             request.setAttribute("_token", request.getSession().getId());
             request.getSession().setAttribute("process_id", p.getId());
