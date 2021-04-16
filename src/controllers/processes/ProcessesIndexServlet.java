@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Process;
+import models.User;
 import utils.DBUtil;
 
 /**
@@ -34,18 +35,22 @@ public class ProcessesIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
+        User login_user = (User)request.getSession().getAttribute("login_user");
+
         int page;
         try{
             page = Integer.parseInt(request.getParameter("page"));
         }catch(Exception e){
             page = 1;
         }
-        List<Process> processes = em.createNamedQuery("getAllProcesses", Process.class)
+        List<Process> processes = em.createNamedQuery("getMyAllProcesses", Process.class)
+                                    .setParameter("user", login_user)
                                     .setFirstResult(15 * (page - 1))
                                     .setMaxResults(15)
                                     .getResultList();
 
-        long processes_count = (long)em.createNamedQuery("getProcessesCount", Long.class)
+        long processes_count = (long)em.createNamedQuery("getMyProcessesCount", Long.class)
+                                       .setParameter("user", login_user)
                                        .getSingleResult();
 
         em.close();

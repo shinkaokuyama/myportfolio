@@ -24,6 +24,14 @@ import javax.persistence.Table;
             name = "getProcessesCount",
             query = "SELECT COUNT(r) FROM Process AS r"
             ),
+    @NamedQuery(
+            name = "getMyAllProcesses",
+            query = "SELECT r FROM Process AS r WHERE r.user = :user ORDER BY r.id DESC"
+            ),
+    @NamedQuery(
+            name = "getMyProcessesCount",
+            query = "SELECT COUNT(r) FROM Process AS r WHERE r.user = :user"
+            )
 
 })
 

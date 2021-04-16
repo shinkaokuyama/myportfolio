@@ -120,10 +120,12 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("users_count", users_count);
             request.setAttribute("page", page);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
             rd.forward(request, response);
         }else{
             EntityManager em = DBUtil.createEntityManager();
+
+            User login_user = (User)request.getSession().getAttribute("login_user");
 
             int page;
             try{
@@ -131,21 +133,24 @@ public class LoginServlet extends HttpServlet {
             }catch(Exception e){
                 page = 1;
             }
-            List<Process> processes = em.createNamedQuery("getAllProcesses", Process.class)
+            List<Process> processes = em.createNamedQuery("getMyAllProcesses", Process.class)
+                                        .setParameter("user", login_user)
                                         .setFirstResult(15 * (page - 1))
                                         .setMaxResults(15)
                                         .getResultList();
 
-            long processes_count = (long)em.createNamedQuery("getProcessesCount", Long.class)
+            long processes_count = (long)em.createNamedQuery("getMyProcessesCount", Long.class)
+                                           .setParameter("user", login_user)
                                            .getSingleResult();
 
             em.close();
+
 
             request.setAttribute("processes", processes);
             request.setAttribute("processes_count", processes_count);
             request.setAttribute("page", page);
 
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/owners/index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/owner.jsp");
             rd.forward(request, response);
         }
     }
